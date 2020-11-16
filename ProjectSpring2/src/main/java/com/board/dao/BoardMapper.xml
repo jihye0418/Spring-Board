@@ -54,7 +54,7 @@
 	
 	<!--검색  -->
 	<select id="getSearchCaterogry" resultType="int">
-		select * from qna where qna_category=#{qna_caregory}
+		select * from qna
 	</select>
 	
 	<!-- 글쓰기 -->

@@ -34,6 +34,7 @@
       <!-- 검색 -->
       <div class="clearfix">
         <form action="qnaList.do" class="float-md-right pb-3" name="search" method="get">
+          <input type="hidden" name="qna_category" value="${qna_category}">
           <div class="input-group">
             <select class="custom-select col-md-3 col-3" name="keyField">
               <option value="qna_title">제목</option>
