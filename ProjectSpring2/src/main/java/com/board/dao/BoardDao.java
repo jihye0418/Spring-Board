@@ -3,6 +3,8 @@ package com.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Select;
+
 import com.board.domain.BoardCommand;
 
 public interface BoardDao {
@@ -23,4 +25,16 @@ public interface BoardDao {
 	
 	//6. 상세보기
 	public BoardCommand selectBoard(int qna_num);
+	
+	//7.이전글
+	public BoardCommand beforeList(int qna_num);
+	
+	//8.다음글
+	public BoardCommand nextList(int qna_num);
+	
+	//9. 글 수정
+	public void updateBoard(BoardCommand board);
+	
+	//10. 글 삭제
+	public void qnaDelete(int seq);
 }

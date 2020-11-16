@@ -21,41 +21,47 @@
 <!-- 본문 -->
 <div class="container">
       <h2 class="text-center pt-4 pb-4">닥터쿡 Q&A</h2>
-      <form action="qnawrite.do" enctype="multipart/form-data" method="post"   id="writeform" novalidate>
+      <form action="qnaUpdate.do" enctype="multipart/form-data" method="post"   id="writeform" novalidate>
         <div class="card shadow p-4 border-left-primary mb-3">
           <div class="form-group">
             <label for="qna_title">제목</label>
             <div class="input-group">
               <select class="custom-select col-md-2 col-3" name="qna_ask" id="qna_ask">
-                <option value="">선택하세요</option>
-                <option value="주문/결제">주문/결제</option>
-                <option value="취소/교환/반품">취소/교환/반품</option>
-                <option value="상품배송">상품배송</option>
-                <option value="기타">기타</option>
+                <option value="" >선택하세요</option>
+                <option value="주문/결제" <c:if test="${qna_ask eq '주문/결제'}">selected</c:if>>주문/결제</option>
+                <option value="취소/교환/반품"<c:if test="${qna_ask eq '취소/교환/반품'}">selected</c:if>>취소/교환/반품</option>
+                <option value="상품배송" <c:if test="${qna_ask eq '상품배송'}">selected</c:if>>상품배송</option>
+                <option value="기타" <c:if test="${qna_ask eq '기타'}">selected</c:if>>기타</option>
               </select>
-              <input type="text" class="form-control" name="qna_title" id="qna_title">
-              <label id="qna_ask-error" class="bad" for="qna_ask" style="display:none"></label>
-              <label id="qna_title-error" class="bad" for="qna_title" style="display:none"></label>
+              <input type="hidden" name="qna_num" value="${command.qna_num }">
+              <input type="text" class="form-control" value="${command.qna_title}" id="qna_title">
+          		<label id="qna_title-error" class="bad" for="qna_title" style="display:none"></label>
             </div>
           </div>
           <div class="form-group">
             <label for="qna_content">내용</label>
             <textarea id="qna_content" name="qna_content" class="form-control" rows="10"
-              style="resize:none"></textarea>
+              style="resize:none">${command.qna_content}</textarea>
           </div>
           <div class="form-group custom-file mb-3">
             <input type="file" class="custom-file-input" id="customFile" name="upload">
-            <label class="custom-file-label" for="customFile">첨부된 파일이 없습니다.</label>
+            <c:if test="${empty command.qna_img }">
+            	<label class="custom-file-label" for="customFile">첨부된 파일이 없습니다.</label>
+            </c:if>
+            <c:if test="${!empty command.qna_img }">
+            	<label class="custom-file-label" for="customFile">[${command.qna_img }] 파일이 등록되어 있습니다.</label>
+            </c:if>
           </div>
           <div class="form-group">
             <div class="text-right">
-              <input type="submit" class="btn btn-primary" value="작성하기">
-              <input type="button" class="btn btn-info" value="목록" onclick="location.href='qnaList.do'">
+              <input type="submit" class="btn btn-primary" value="수정하기">
+              <input type="button" class="btn btn-info" value="목록" onclick=rewriteCancle();>
             </div>
           </div>
       </form>
     </div>
-    </div>
+   </div>
+
 <!-- footer -->
     <c:import url="/WEB-INF/template/footer.jsp"/>
     

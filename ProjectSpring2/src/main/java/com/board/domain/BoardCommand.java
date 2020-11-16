@@ -10,10 +10,12 @@ public class BoardCommand {
 	private MultipartFile upload;
 	
 	public int getQna_num() {
+		System.out.println("getqna_num확인"+qna_num);
 		return qna_num;
 	}
 	public void setQna_num(int qna_num) {
 		this.qna_num = qna_num;
+		System.out.println("setqna_num확인"+qna_num);
 	}
 	public int getQna_views() {
 		return qna_views;
@@ -86,9 +88,10 @@ public class BoardCommand {
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
-		System.out.println("setUpload()메서드 호출됨(upload)=!"+upload);
+		System.out.println("setUpload()확인(upload)=!"+upload);
 	}
 	public String getQna_ask() {
+		System.out.println("qna_ask호출됨!!!!!!"+qna_ask);
 		return qna_ask;
 	}
 	public void setQna_ask(String qna_ask) {

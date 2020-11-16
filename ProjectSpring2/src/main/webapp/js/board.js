@@ -10,7 +10,7 @@ $(function(){
   // 유효성 검사
   $('#writeform').validate({
     rules:{
-      ask_qna:{
+      qna_ask:{
         required: true
       },
       qna_title:{
@@ -23,7 +23,7 @@ $(function(){
       }
     },
     messages:{
-      ask_qna:{
+      qna_ask:{
         required:'카테고리를 선택하세요'
       },
       qna_title:{
@@ -41,8 +41,20 @@ $(function(){
   });
 
   /* 파일첨부 */
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
+	$(".custom-file-input").on("change", function() {
+	  var fileName = $(this).val().split("\\").pop();
+	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
 })
+
+
+//수정 취소하기
+function rewriteCancle(){
+	var result = confirm("글 수정을 취소하시겠습니까?");
+	
+	if(result){
+		window.history.back();
+	}else{
+		return  false;
+	}
+}

@@ -45,7 +45,7 @@ public class DownloadView extends AbstractView {
 		
 		//대화상자에서 다운로드 설정
 		//(다운로드 위치, 다운받을 파일명)
-		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\";");
+		response.setHeader("Content-Disposition", "attachment;fileName=\""+fileName+"\";");
 		response.setHeader("Content-Transfer-Encoding","binary");
 		
 		//입출력 객체

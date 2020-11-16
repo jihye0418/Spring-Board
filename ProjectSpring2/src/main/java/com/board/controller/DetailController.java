@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.board.dao.BoardDao;
 import com.board.domain.BoardCommand;
 import com.board.util.FileUtil;
+import com.board.util.StringUtil;
 
 @Controller
 public class DetailController {
@@ -29,18 +30,40 @@ public class DetailController {
 		
 		//조회수 증가
 		boardDao.updateQnaViews(qna_num);
+		
+		//게시글 상세보기
 		BoardCommand board=boardDao.selectBoard(qna_num);
 		
-		board.setQna_content(board.getQna_content()); 
-		return new ModelAndView("qnaView","board",board);
+		//글 내용 엔터
+		board.setQna_content(StringUtil.parseBr(board.getQna_content()));
+		
+		//이전글
+		BoardCommand beforeContent=boardDao.beforeList(qna_num);
+		System.out.println("beforeContent 확인=>"+boardDao.beforeList(qna_num));
+		
+		//다음글
+		BoardCommand nextContent=boardDao.nextList(qna_num);
+		System.out.println("nextContent 확인=>"+boardDao.nextList(qna_num));
+	
+		ModelAndView mav = new ModelAndView("qnaView");
+
+		mav.addObject("beforeContent", beforeContent);
+		mav.addObject("nextContent", nextContent);
+		mav.addObject("board", board);
+		
+		System.out.println("오류확인하기"+mav.getModel());
+		return mav;
 	}
 	
+
 	//파일 다운로드
-	@RequestMapping("file.do")
+	@RequestMapping("/file.do")
 	public ModelAndView download(@RequestParam("qna_img") String qna_img) {
 		//다운로드 받을 파일 위치, 이름
+		System.out.println("qna_img=>"+qna_img);
 		File downloadFile = new File(FileUtil.UPLOAD_PATH+"/"+qna_img);
 		//스프링에서 다운 받는 뷰(뷰객체,모델 객체명,전달할값)
 		return new ModelAndView	("downloadView","downloadFile",downloadFile);
 	}
+	
 }

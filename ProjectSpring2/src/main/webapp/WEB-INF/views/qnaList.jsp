@@ -3,14 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>닥터쿡 Q&A</title>
 <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/bf15dcb45d.js" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="css/style.css">
-    <title>닥터쿡 Q&A</title>
+</head>
+<body>
 <!-- header -->
-    <c:import url="/WEB-INF/views/template/header.jsp"/>
+    <c:import url="/WEB-INF/template/header.jsp"/>
     <div class="container">
       <h2 class="text-center pt-4 pb-4">닥터쿡 Q&A</h2>
 
@@ -79,9 +85,11 @@
       </nav>
     </div>
 <!-- footer -->
-    <c:import url="/WEB-INF/views/template/footer.jsp"/>
+
+    <c:import url="/WEB-INF/template/footer.jsp"/>
     
 <!-- js -->
+<script src="https://kit.fontawesome.com/bf15dcb45d.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- 글쓰기 api -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -90,5 +98,7 @@
     <script src="js/jquery.validate.min.js"></script>
     <!-- 게시판용 js -->
     <script src="js/board.js"></script>
+    <!-- 전체 js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

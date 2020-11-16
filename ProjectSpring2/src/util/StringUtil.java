@@ -1,5 +1,7 @@
 package com.board.util;
 
+//글내용 보기 -> <textarea></textarea>를 많이 썼었다. 
+//요즘에는 <pre><textarea><%=content%></textarea></pre>
 public class StringUtil {
 	public static String parseBr(String msg){
 		

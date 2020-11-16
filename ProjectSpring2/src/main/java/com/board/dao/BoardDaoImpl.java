@@ -38,5 +38,26 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	public BoardCommand selectBoard(int qna_num) {
 		return (BoardCommand)getSqlSession().selectOne("selectBoard",qna_num);
 	}
-
+	
+	//이전글
+	public BoardCommand beforeList(int qna_num) {
+		return (BoardCommand)getSqlSession().selectOne("beforeList",qna_num);
+	}
+	
+	//다음글
+	public BoardCommand nextList(int qna_num) {
+		return (BoardCommand)getSqlSession().selectOne("nextList",qna_num);
+	}
+	
+	//글 수정
+	public void updateBoard(BoardCommand board) {
+		getSqlSession().update("qnaUpdate", board);
+		
+	}
+	
+	//글 삭제
+	public void qnaDelete(int seq) {
+		getSqlSession().delete("qnaDelete", seq);
+		
+	}
 }
