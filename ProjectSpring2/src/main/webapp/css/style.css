@@ -1,0 +1,410 @@
+@charset "UTF-8";
+
+/* 전체 글씨체 */
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 기본 글자 */
+body{
+  color: var(--font);
+  font-family: 'NanumSquareRound','Noto Sans';
+}
+
+/* ======================
+          색상
+========================*/
+:root{
+  --font:#424242;
+  --primary: #FF6F61;
+  --primary-trans:#FFECDF;
+  --primary-focus:#DB4746;
+  --board-header: #e9ecef;
+}
+
+/* 기본 색상 설정 */
+.border-primary {
+  border-color:var(--primary) !important;
+}
+
+/* ======================
+          버튼
+========================*/
+/* primary버튼 */
+.btn-primary {
+  color: var(--white);
+  background-color: var(--primary);
+  border-color: var(--primary);
+  padding:  .4em 1.2em;
+}
+
+.btn-primary:hover {
+  color: var(--white);
+  background-color: var(--primary-focus);
+  border-color: var(--primary-focus);
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  color: var(--white);
+  background-color: var(--primary-focus);
+  border-color: var(--primary-focus);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: var(--white);
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: var(--white);
+  background-color: var(--primary-focus);
+  border-color: var(--primary-focus);
+}
+
+.btn-primary:focus, .btn-primary.focus, 
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus{
+  box-shadow: none;
+}
+
+/* warning버튼 */
+.btn-warning {
+  color: var(--white);
+  padding:  .4em 1.2em;
+}
+
+.btn-warning:hover,
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
+.show > .btn-warning.dropdown-toggle {
+  color: var(--white);
+}
+
+.btn-warning:focus, .btn-warning.focus, 
+.btn-warning:not(:disabled):not(.disabled).active:focus,
+.btn-warning:not(:disabled):not(.disabled):active:focus,
+.show>.btn-warning.dropdown-toggle:focus{
+  box-shadow: none;
+}
+
+/*danger 버튼*/
+.btn-danger {
+  color: var(--white);
+  padding:  .4em 1.2em;
+}
+
+.btn-danger:focus, .btn-danger.focus, 
+.btn-danger:not(:disabled):not(.disabled).active:focus,
+.btn-danger:not(:disabled):not(.disabled):active:focus,
+.show>.btn-danger.dropdown-toggle:focus{
+  box-shadow: none;
+}
+
+/* ======================
+          폼
+========================*/
+textarea{
+  resize: none;
+}
+
+/* select */
+.custom-select:focus {
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+/* file */
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: var(--primary);
+  box-shadow: none;
+}
+
+/* pagenation */
+.page-link {
+  color: var(--primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.page-link:hover {
+  color: var(--primary-hover);
+}
+
+.page-item.active .page-link {
+  background-color:var(--primary);
+  border-color: var(--primary);
+}
+
+.page-link:focus {
+  box-shadow: none;
+}
+
+/* nav-pills */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: var(--primary);
+}
+
+/* input 포커스 */
+.form-control:focus{
+  color:var(--secondary);
+  border-color:var(--primary);
+  outline:0;
+  box-shadow:none;
+}
+
+/* ======================
+          링크
+========================*/
+a{
+  color:var(--font);
+}
+
+a:hover{
+  text-decoration: none;
+  color: var(--primary);
+}
+
+/* ======================
+      스크롤 탑
+========================*/
+.top{
+  background: var(--gray);
+  color: var(--white);
+  position: fixed;
+  bottom: 16px;
+  right: 32px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 45px;
+  text-align: center;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 9999;
+  display: none;
+}
+
+
+/* ======================
+          header
+========================*/
+.navbar{
+  padding: 10px 0;
+  box-shadow: 0 0 4px rgba(0,0,0,.1);
+}
+
+.bg-light{
+  background-color: var(--white)!important;
+}
+
+.navbar-light .navbar-nav .show>.nav-link{
+  color: var(--primary);
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: var(--font);
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  color: var(--primary);
+}
+
+.nav-link{
+  padding: 0.8rem 1rem;
+}
+
+/* 서브메뉴 */
+.dropdown-item{
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:focus{
+  background-color: var(--primary-trans);
+  color: var(--primary);
+}
+
+/* 검색창 */
+.search-box .input-group-addon {
+	min-width: 35px;
+	background: transparent;
+	position: absolute;
+	right: 0;
+	z-index: 9;
+	padding: 10px 7px;
+	height: 100%;
+}
+
+.searchbar::placeholder {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+.searchbar:focus {
+	width: 300px;
+	font-size: 1em;
+	font-weight: bold;
+	transition: 0.3s;
+	border-bottom: var(--primary) solid 2px;
+	outline: none;
+}
+
+.searchbar {
+	float: right;
+	padding: 6px 0;
+	width: 170px;
+	border: none;
+	margin-top: 1px;
+	font-size: 1em;
+	font-weight: bold;
+	border-bottom: var(--font) solid 2px;
+	transition: 0.3s;
+}
+
+
+/* 버튼 */
+.burger-menu{
+  color: var(--font);
+}
+
+.btn:focus{
+  box-shadow: none;
+}
+
+.searchbar:focus + .btn{
+  color: var(--primary);
+}
+
+
+/* 로그인 */
+.navbar .nav-link > i{
+  display: block;
+  text-align: center;
+}
+
+
+/* 햄버거 버튼 */
+.navbar-toggler{
+  padding:.25em;
+  box-sizing: border-box;
+}
+
+.burger-menu {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.burger {
+  position: absolute;
+  background: rgba(111,111,111,1);
+  width: 100%;
+  height: 3px;
+  top: 50%;
+  right: 0px;
+  margin-top: -2px;
+  opacity: 1;
+}
+
+.burger::before {
+  position: absolute;
+  background: rgba(111,111,111,1);
+  width: 25px;
+  height: 3px;
+  top: 10px;
+  content: "";
+  display: block;
+}
+.burger::after {
+  position: absolute;
+  background: rgba(111,111,111,1);
+  width: 25px;
+  height: 3px;
+  bottom: 10px;
+  content: "";
+  display: block;
+}
+.burger::after,
+.burger::before,
+.burger {
+  transition: all .3s ease-in-out;
+}
+
+.burger-menu.menu-on .burger::after {
+  transform: rotate(-45deg);
+  bottom: 0px;
+}
+
+.burger-menu.menu-on .burger::before {
+  transform: rotate(45deg);
+  top: 0px;
+}
+
+.burger-menu.menu-on .burger {
+  background: rgba(111, 111, 111, .0);
+}
+
+.burger-menu {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1159px){
+	.navbar .nav-link > i {
+		display: inline-block;			
+		text-align: left;
+		min-width: 25px;
+		position: relative;
+  }
+}
+
+@media (max-width: 991px){
+  .searchbar,.searchbar:focus{
+    width: 90%;
+  }
+}
+
+
+/* ======================
+          footer
+========================*/
+.col_white_amrc { color:#FFF;}
+footer { width:100%; background-color:#263238; min-height:250px; padding:10px 0px 25px 0px ;}
+.pt2 { padding-top:40px ; margin-bottom:20px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+.mb10 { padding-bottom:15px ;}
+.footer_ul_amrc { margin:0px ; list-style-type:none ; font-size:14px; padding:0px 0px 10px 0px ; }
+.footer_ul_amrc li {padding:0px 0px 5px 0px;}
+.footer_ul_amrc li a{ color:#CCC;}
+.footer_ul_amrc li a:hover{ color:#fff; text-decoration:none;}
+.padding-right { padding-right:10px; }
+
+.footer_ul2_amrc {margin:0px; list-style-type:none; padding:0px;}
+.footer_ul2_amrc li p { display:table; }
+.footer_ul2_amrc li a:hover { text-decoration:none;}
+.footer_ul2_amrc li i { margin-top:5px;}
+
+.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
+.foote_bottom_ul_amrc {
+	list-style-type:none;
+	padding:0px;
+	display:table;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+.foote_bottom_ul_amrc li { display:inline;}
+.foote_bottom_ul_amrc li a { color:#999; margin:0 12px;}
+.foote_bottom_ul_amrc li a:hover{color:#ff6f61;}
+.container p a:hover{color:#ff6f61;}
