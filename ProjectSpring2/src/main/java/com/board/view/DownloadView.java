@@ -16,42 +16,42 @@ import org.springframework.web.servlet.view.AbstractView;
 public class DownloadView extends AbstractView {
 
 	public DownloadView() {
-		//´Ù¿î·Îµå È­¸éÀ¸·Î ÀüÈ¯
+		//ë‹¤ìš´ë¡œë“œ í™”ë©´ìœ¼ë¡œ ì „í™˜
 		setContentType("application/download");
 	}
 	
-	//»ç¿ëÀÚ·ÎºÎÅÍ ¹ŞÀº ¸Å°³º¯¼ö Ã³¸®
+	//ì‚¬ìš©ìë¡œë¶€í„° ë°›ì€ ë§¤ê°œë³€ìˆ˜ ì²˜ë¦¬
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// ´Ù¿î·Îµå ¹ŞÀ» ÆÄÀÏ Á¤º¸
+		// ë‹¤ìš´ë¡œë“œ ë°›ì„ íŒŒì¼ ì •ë³´
 		File file=(File)model.get("downloadFile");
 		System.out.println("file=>"+file);
 		
-		//ÆÄÀÏ Å¸ÀÔ, Å©±â ¼³Á¤
+		//íŒŒì¼ íƒ€ì…, í¬ê¸° ì„¤ì •
 		response.setContentType(getContentType());
 		response.setContentLength((int)file.length());
 		
-		//ºê¶ó¿ìÀúº° ÇÑ±ÛÃ³¸®
-		String userAgent=request.getHeader("user-Agent"); //ºê¶ó¿ìÀú È®ÀÎ
+		//ë¸Œë¼ìš°ì €ë³„ í•œê¸€ì²˜ë¦¬
+		String userAgent=request.getHeader("user-Agent"); //ë¸Œë¼ìš°ì € í™•ì¸
 		System.out.println("user-Agent=>"+userAgent);
-		boolean ie=userAgent.indexOf("MISE") > -1; //Microsoft Internet Explorer¸é -1 ¹İÈ¯
+		boolean ie=userAgent.indexOf("MISE") > -1; //Microsoft Internet Explorerë©´ -1 ë°˜í™˜
 		String fileName=null;
 		if(ie) {
-			fileName=URLEncoder.encode(file.getName(),"uft-8"); //ÇÑ±ÛÃ³¸®
+			fileName=URLEncoder.encode(file.getName(),"uft-8"); //í•œê¸€ì²˜ë¦¬
 		}else {
-			fileName=new String(file.getName().getBytes("utf-8"),"iso-8859-1"); //¿µ¹®Ã³¸®
+			fileName=new String(file.getName().getBytes("utf-8"),"iso-8859-1"); //ì˜ë¬¸ì²˜ë¦¬
 		}
 		
-		//´ëÈ­»óÀÚ¿¡¼­ ´Ù¿î·Îµå ¼³Á¤
-		//(´Ù¿î·Îµå À§Ä¡, ´Ù¿î¹ŞÀ» ÆÄÀÏ¸í)
+		//ëŒ€í™”ìƒìì—ì„œ ë‹¤ìš´ë¡œë“œ ì„¤ì •
+		//(ë‹¤ìš´ë¡œë“œ ìœ„ì¹˜, ë‹¤ìš´ë°›ì„ íŒŒì¼ëª…)
 		response.setHeader("Content-Disposition", "attachment;fileName=\""+fileName+"\";");
 		response.setHeader("Content-Transfer-Encoding","binary");
 		
-		//ÀÔÃâ·Â °´Ã¼
+		//ì…ì¶œë ¥ ê°ì²´
 		OutputStream out=response.getOutputStream();
 		FileInputStream fis=null;
-		//¿¹¿ÜÃ³¸®
+		//ì˜ˆì™¸ì²˜ë¦¬
 		try {
 			fis=new FileInputStream(file);
 			FileCopyUtils.copy(fis, out); 

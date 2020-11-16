@@ -16,8 +16,8 @@ import com.board.util.StringUtil;
 
 @Controller
 public class DetailController {
-//logger°´Ã¼ ¸¸µé±â
-	private Logger log=Logger.getLogger(this.getClass()); //ÀÚµ¿À¸·Î ·Î±×Ã³¸®ÇÒ Å¬·¡½º¸í (this.getClass-> ÀÚ±â ÀÚ½Å)
+//loggerê°ì²´ ë§Œë“¤ê¸°
+	private Logger log=Logger.getLogger(this.getClass()); //ìë™ìœ¼ë¡œ ë¡œê·¸ì²˜ë¦¬í•  í´ë˜ìŠ¤ëª… (this.getClass-> ìê¸° ìì‹ )
 	
 	@Autowired
 	private BoardDao boardDao;
@@ -28,22 +28,22 @@ public class DetailController {
 			log.debug("qna_num=>"+qna_num);
 		}
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		boardDao.updateQnaViews(qna_num);
 		
-		//°Ô½Ã±Û »ó¼¼º¸±â
+		//ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°
 		BoardCommand board=boardDao.selectBoard(qna_num);
 		
-		//±Û ³»¿ë ¿£ÅÍ
+		//ê¸€ ë‚´ìš© ì—”í„°
 		board.setQna_content(StringUtil.parseBr(board.getQna_content()));
 		
-		//ÀÌÀü±Û
+		//ì´ì „ê¸€
 		BoardCommand beforeContent=boardDao.beforeList(qna_num);
-		System.out.println("beforeContent È®ÀÎ=>"+boardDao.beforeList(qna_num));
+		System.out.println("beforeContent í™•ì¸=>"+boardDao.beforeList(qna_num));
 		
-		//´ÙÀ½±Û
+		//ë‹¤ìŒê¸€
 		BoardCommand nextContent=boardDao.nextList(qna_num);
-		System.out.println("nextContent È®ÀÎ=>"+boardDao.nextList(qna_num));
+		System.out.println("nextContent í™•ì¸=>"+boardDao.nextList(qna_num));
 	
 		ModelAndView mav = new ModelAndView("qnaView");
 
@@ -51,18 +51,18 @@ public class DetailController {
 		mav.addObject("nextContent", nextContent);
 		mav.addObject("board", board);
 		
-		System.out.println("¿À·ùÈ®ÀÎÇÏ±â"+mav.getModel());
+		System.out.println("ì˜¤ë¥˜í™•ì¸í•˜ê¸°"+mav.getModel());
 		return mav;
 	}
 	
 
-	//ÆÄÀÏ ´Ù¿î·Îµå
+	//íŒŒì¼ ë‹¤ìš´ë¡œë“œ
 	@RequestMapping("/file.do")
 	public ModelAndView download(@RequestParam("qna_img") String qna_img) {
-		//´Ù¿î·Îµå ¹ŞÀ» ÆÄÀÏ À§Ä¡, ÀÌ¸§
+		//ë‹¤ìš´ë¡œë“œ ë°›ì„ íŒŒì¼ ìœ„ì¹˜, ì´ë¦„
 		System.out.println("qna_img=>"+qna_img);
 		File downloadFile = new File(FileUtil.UPLOAD_PATH+"/"+qna_img);
-		//½ºÇÁ¸µ¿¡¼­ ´Ù¿î ¹Ş´Â ºä(ºä°´Ã¼,¸ğµ¨ °´Ã¼¸í,Àü´ŞÇÒ°ª)
+		//ìŠ¤í”„ë§ì—ì„œ ë‹¤ìš´ ë°›ëŠ” ë·°(ë·°ê°ì²´,ëª¨ë¸ ê°ì²´ëª…,ì „ë‹¬í• ê°’)
 		return new ModelAndView	("downloadView","downloadFile",downloadFile);
 	}
 	

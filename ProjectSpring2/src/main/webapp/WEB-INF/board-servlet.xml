@@ -17,6 +17,7 @@
 <bean class="com.board.controller.WriteController"/><!-- 글쓰기 -->
 <bean class="com.board.controller.DetailController"/><!-- 글 상세보기 -->
 <bean class="com.board.controller.UpdateController" /><!-- 글 수정 -->
+<bean class="com.board.controller.DeleteController" /><!-- 글 삭제 -->
 
 <bean id="viewResolver"
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -15,26 +15,26 @@ import com.board.util.FileUtil;
 
 @Controller
 public class WriteController {
-//·Î±×°´Ã¼ »ı¼º
+//ë¡œê·¸ê°ì²´ ìƒì„±
 	private Logger log = Logger.getLogger(this.getClass());
 
-//dbÁ¢¼Ó
+//dbì ‘ì†
 	@Autowired
 	private BoardDao boardDao;
 
 @RequestMapping(value="/qnawrite.do", method = RequestMethod.GET)
 public String form() {
-	System.out.println("form()È£ÃâµÊ");
+	System.out.println("form()í˜¸ì¶œë¨");
 	return "qnaWrite";
 	}
 
 @RequestMapping(value="/qnawrite.do", method = RequestMethod.POST)
 public String submit(@ModelAttribute("command") BoardCommand command) {
-	    System.out.println("submit() È£ÃâµÊ");
+	    System.out.println("submit() í˜¸ì¶œë¨");
 	if(log.isDebugEnabled()) {
 		log.debug("BoardCommand=>"+command);
 	}
-	//±Û¾²±â ¹× ¾÷·Îµå
+	//ê¸€ì“°ê¸° ë° ì—…ë¡œë“œ
 	try {
 		String newName="";
 		System.out.println("command.getUpload()=>"+command.getUpload());
@@ -44,16 +44,16 @@ public String submit(@ModelAttribute("command") BoardCommand command) {
 			command.setQna_img(newName);
 		}
 		
-		//±Û ¹øÈ£ +1
+		//ê¸€ ë²ˆí˜¸ +1
 		int newQna_num=boardDao.getNewQna_num()+1;
 		System.out.println(command.toString());
 		System.out.println("newSeq=>"+newQna_num);
 		command.setQna_num(newQna_num);
 		
-		//±Û¾²±â
+		//ê¸€ì“°ê¸°
 		boardDao.insertqnaBoard(command);
 		
-	//¾÷·ÎµåÇÑ ÆÄÀÏÀÌ ÀÖ´Ù¸é  ¿Ã·ÁÁØ ÆÄÀÏÀ» ³» ¼­¹öÀÇ UPLOAD·Î ÀÌµ¿ÇÏ¶ó
+	//ì—…ë¡œë“œí•œ íŒŒì¼ì´ ìˆë‹¤ë©´  ì˜¬ë ¤ì¤€ íŒŒì¼ì„ ë‚´ ì„œë²„ì˜ UPLOADë¡œ ì´ë™í•˜ë¼
 		if(!command.getUpload().isEmpty()) {
 			File file=new File(FileUtil.UPLOAD_PATH+"/"+newName);
 			command.getUpload().transferTo(file);

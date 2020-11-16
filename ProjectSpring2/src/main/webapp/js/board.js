@@ -1,12 +1,4 @@
 $(function(){
-  /* 글쓰기 템플릿 설정 */
-  // $('#summernote').summernote({
-  //   placeholder: '내용을 입력하세요.',
-  //   minHeight: 400,
-  //   maxHeight: 400,
-  //   lang:'ko-KR'
-  //   });
-
   // 유효성 검사
   $('#writeform').validate({
     rules:{
@@ -45,6 +37,7 @@ $(function(){
 	  var fileName = $(this).val().split("\\").pop();
 	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
+
 })
 
 
@@ -58,3 +51,5 @@ function rewriteCancle(){
 		return  false;
 	}
 }
+
+

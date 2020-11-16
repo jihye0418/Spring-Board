@@ -10,12 +10,12 @@ public class BoardCommand {
 	private MultipartFile upload;
 	
 	public int getQna_num() {
-		System.out.println("getqna_numÈ®ÀÎ(qna_num)=>"+qna_num);
+		System.out.println("getqna_numí™•ì¸(qna_num)=>"+qna_num);
 		return qna_num;
 	}
 	public void setQna_num(int qna_num) {
 		this.qna_num = qna_num;
-		System.out.println("setqna_numÈ®ÀÎ(qna_num)=>"+qna_num);
+		System.out.println("setqna_numí™•ì¸(qna_num)=>"+qna_num);
 	}
 	public int getQna_views() {
 		return qna_views;
@@ -62,28 +62,28 @@ public class BoardCommand {
 		System.out.println("setMem_id=>"+mem_id);
 	}
 	public String getQna_content() {
-		System.out.println("getQna_content()È£ÃâµÊ=>"+qna_content);
+		System.out.println("getQna_content()í˜¸ì¶œë¨=>"+qna_content);
 		return qna_content;
 	}
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
-		System.out.println("setQna_content()È£ÃâµÊ=>"+qna_content);
+		System.out.println("setQna_content()í˜¸ì¶œë¨=>"+qna_content);
 	}
 	public String getQna_img() {
-		System.out.println("getQna_img()È£ÃâµÊ=>"+qna_img);
+		System.out.println("getQna_img()í˜¸ì¶œë¨=>"+qna_img);
 		return qna_img;
 	}
 	public void setQna_img(String qna_img) {
 		this.qna_img = qna_img;
-		System.out.println("setQna_img()È£ÃâµÊ=>!"+qna_img);
+		System.out.println("setQna_img()í˜¸ì¶œë¨=>!"+qna_img);
 	}
 	public String getQna_title() {
-		System.out.println("getQna_title()È£ÃâµÊ=>"+qna_title);
+		System.out.println("getQna_title()í˜¸ì¶œë¨=>"+qna_title);
 		return qna_title;
 	}
 	public void setQna_title(String qna_title) {
 		this.qna_title = qna_title;
-		System.out.println("setQna_title() È£ÃâµÊ=>"+qna_title);
+		System.out.println("setQna_title() í˜¸ì¶œë¨=>"+qna_title);
 	}
 	public Date getQna_date() {
 		return qna_date;
@@ -92,12 +92,12 @@ public class BoardCommand {
 		this.qna_date = qna_date;
 	}
 	public MultipartFile getUpload() {
-		System.out.println("getUpload()È£ÃâµÊ(upload)=>"+upload);
+		System.out.println("getUpload()í˜¸ì¶œë¨(upload)=>"+upload);
 		return upload;
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
-		System.out.println("setUpload()È®ÀÎ(upload)=!"+upload);
+		System.out.println("setUpload()í™•ì¸(upload)=!"+upload);
 	}
 	public String getQna_ask() {
 		System.out.println("getQna_ask=>"+qna_ask);
@@ -105,6 +105,6 @@ public class BoardCommand {
 	}
 	public void setQna_ask(String qna_ask) {
 		this.qna_ask = qna_ask;
-		System.out.println("setQna_ask()È£ÃâµÊ=>"+qna_ask);
+		System.out.println("setQna_ask()í˜¸ì¶œë¨=>"+qna_ask);
 	}
 }

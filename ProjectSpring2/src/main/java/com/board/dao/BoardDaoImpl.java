@@ -18,43 +18,43 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 		return getSqlSession().selectOne("selectCount",map);
 	}
 	
-	//°Ô½Ã±Û ¹øÈ£
+	//ê²Œì‹œê¸€ ë²ˆí˜¸
 	public int getNewQna_num() {
 		int newQnaNum=(Integer)getSqlSession().selectOne("getNewQna_num");
 		return newQnaNum;
 	}
 	
-	//±Û¾²±â
+	//ê¸€ì“°ê¸°
 	public void insertqnaBoard(BoardCommand board) {
 		getSqlSession().insert("insertqnaBoard",board);
 	}
 	
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	public void updateQnaViews(int qna_num) {
 		getSqlSession().update("updateQnaViews",qna_num);
 	}
 	
-	//±Û »ó¼¼º¸±â
+	//ê¸€ ìƒì„¸ë³´ê¸°
 	public BoardCommand selectBoard(int qna_num) {
 		return (BoardCommand)getSqlSession().selectOne("selectBoard",qna_num);
 	}
 	
-	//ÀÌÀü±Û
+	//ì´ì „ê¸€
 	public BoardCommand beforeList(int qna_num) {
 		return (BoardCommand)getSqlSession().selectOne("beforeList",qna_num);
 	}
 	
-	//´ÙÀ½±Û
+	//ë‹¤ìŒê¸€
 	public BoardCommand nextList(int qna_num) {
 		return (BoardCommand)getSqlSession().selectOne("nextList",qna_num);
 	}
 	
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	public void updateBoard(BoardCommand board) {
 		getSqlSession().update("updateBoard", board);
 	}
 	
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	public void deleteBoard(int qna_num) {
 		getSqlSession().delete("deleteBoard", qna_num);
 	}

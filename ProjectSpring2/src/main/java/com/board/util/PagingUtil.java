@@ -3,17 +3,17 @@ package com.board.util;
 
 public class PagingUtil {
 	
-	private int startCount;	 // ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ °Ô½Ã±ÛÀÇ ½ÃÀÛ ¹øÈ£
-	private int endCount;	 // ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ °Ô½Ã±ÛÀÇ ³¡ ¹øÈ£
-	private StringBuffer pagingHtml;// ÆäÀÌÂ¡ »ı¼ºÀÚ ->¸µÅ© ¹®ÀÚ¿­, '¢º' ¿ä Ç¥½Ã!
+	private int startCount;	 // í•œ í˜ì´ì§€ì—ì„œ ë³´ì—¬ì¤„ ê²Œì‹œê¸€ì˜ ì‹œì‘ ë²ˆí˜¸
+	private int endCount;	 // í•œ í˜ì´ì§€ì—ì„œ ë³´ì—¬ì¤„ ê²Œì‹œê¸€ì˜ ë ë²ˆí˜¸
+	private StringBuffer pagingHtml;// í˜ì´ì§• ìƒì„±ì ->ë§í¬ ë¬¸ìì—´, 'â–¶' ìš” í‘œì‹œ!
 
 	/**
-	 * currentPage : ÇöÀçÆäÀÌÁö
-	 * totalCount : ÀüÃ¼ °Ô½Ã¹° ¼ö
-	 * blockCount : ÇÑ ÆäÀÌÁöÀÇ  °Ô½Ã¹°ÀÇ ¼ö (=numPerPage) ÆäÀÌÁö´ç º¸¿©ÁÙ ·¹ÄÚµå ¼ö
-	 * blockPage : ÇÑ È­¸é¿¡ º¸¿©ÁÙ ÆäÀÌÁö ¼ö (=numPerBlock)
-	 * pageUrl : È£Ãâ ÆäÀÌÁö url
-	 * addKey : ºÎ°¡ÀûÀÎ key ¾øÀ» ¶§´Â null Ã³¸® (&num=23Çü½ÄÀ¸·Î Àü´ŞÇÒ °Í)
+	 * currentPage : í˜„ì¬í˜ì´ì§€
+	 * totalCount : ì „ì²´ ê²Œì‹œë¬¼ ìˆ˜
+	 * blockCount : í•œ í˜ì´ì§€ì˜  ê²Œì‹œë¬¼ì˜ ìˆ˜ (=numPerPage) í˜ì´ì§€ë‹¹ ë³´ì—¬ì¤„ ë ˆì½”ë“œ ìˆ˜
+	 * blockPage : í•œ í™”ë©´ì— ë³´ì—¬ì¤„ í˜ì´ì§€ ìˆ˜ (=numPerBlock)
+	 * pageUrl : í˜¸ì¶œ í˜ì´ì§€ url
+	 * addKey : ë¶€ê°€ì ì¸ key ì—†ì„ ë•ŒëŠ” null ì²˜ë¦¬ (&num=23í˜•ì‹ìœ¼ë¡œ ì „ë‹¬í•  ê²ƒ)
 	 * */
 	public PagingUtil(int currentPage, int totalCount, int blockCount,
 			int blockPage, String pageUrl) {
@@ -30,42 +30,42 @@ public class PagingUtil {
 	public PagingUtil(String keyField, String keyWord, int currentPage, int totalCount, int blockCount,
 			int blockPage,String pageUrl,String addKey) {
 		
-		if(addKey == null) addKey = ""; //ºÎ°¡Å°°¡ null ÀÏ¶§ ""Ã³¸®
+		if(addKey == null) addKey = ""; //ë¶€ê°€í‚¤ê°€ null ì¼ë•Œ ""ì²˜ë¦¬
 		
-		// ÀüÃ¼ ÆäÀÌÁö ¼ö
+		// ì „ì²´ í˜ì´ì§€ ìˆ˜
 		int totalPage = (int) Math.ceil((double) totalCount / blockCount);
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
-		// ÇöÀç ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁö ¼öº¸´Ù Å©¸é ÀüÃ¼ ÆäÀÌÁö ¼ö·Î ¼³Á¤
+		// í˜„ì¬ í˜ì´ì§€ê°€ ì „ì²´ í˜ì´ì§€ ìˆ˜ë³´ë‹¤ í¬ë©´ ì „ì²´ í˜ì´ì§€ ìˆ˜ë¡œ ì„¤ì •
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
-		// ÇöÀç ÆäÀÌÁöÀÇ Ã³À½°ú ¸¶Áö¸· ±ÛÀÇ ¹øÈ£ °¡Á®¿À±â.
+		// í˜„ì¬ í˜ì´ì§€ì˜ ì²˜ìŒê³¼ ë§ˆì§€ë§‰ ê¸€ì˜ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°.
 		startCount = (currentPage - 1) * blockCount + 1;
 		endCount = currentPage * blockCount;
-		// ½ÃÀÛ ÆäÀÌÁö¿Í ¸¶Áö¸· ÆäÀÌÁö °ª ±¸ÇÏ±â.
+		// ì‹œì‘ í˜ì´ì§€ì™€ ë§ˆì§€ë§‰ í˜ì´ì§€ ê°’ êµ¬í•˜ê¸°.
 		int startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		int endPage = startPage + blockPage - 1;
-		// ¸¶Áö¸· ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁö ¼öº¸´Ù Å©¸é ÀüÃ¼ ÆäÀÌÁö ¼ö·Î ¼³Á¤
+		// ë§ˆì§€ë§‰ í˜ì´ì§€ê°€ ì „ì²´ í˜ì´ì§€ ìˆ˜ë³´ë‹¤ í¬ë©´ ì „ì²´ í˜ì´ì§€ ìˆ˜ë¡œ ì„¤ì •
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
-		// ÀÌÀü block ÆäÀÌÁö
+		// ì´ì „ block í˜ì´ì§€
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			if(keyWord==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+			if(keyWord==null){//ê²€ìƒ‰ ë¯¸ì‚¬ìš©ì‹œ
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
 			}else{
 				pagingHtml.append("<a href="+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum="+ (startPage - 1) + addKey +">");
 			}
-			pagingHtml.append("ÀÌÀü");
+			pagingHtml.append("ì´ì „");
 			pagingHtml.append("</a>");
 		}
 		pagingHtml.append("&nbsp;|&nbsp;");
-		//ÆäÀÌÁö ¹øÈ£.ÇöÀç ÆäÀÌÁö´Â »¡°£»öÀ¸·Î °­Á¶ÇÏ°í ¸µÅ©¸¦ Á¦°Å.
+		//í˜ì´ì§€ ë²ˆí˜¸.í˜„ì¬ í˜ì´ì§€ëŠ” ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ê°•ì¡°í•˜ê³  ë§í¬ë¥¼ ì œê±°.
 		for (int i = startPage; i <= endPage; i++) {
-			if (i > totalPage) { //ÇöÀç ÆäÀÌÁö°¡ ÃÑÆäÀÌÁöº¸´Ù Å©¸é ÀÚµ¿Á¾·á.
+			if (i > totalPage) { //í˜„ì¬ í˜ì´ì§€ê°€ ì´í˜ì´ì§€ë³´ë‹¤ í¬ë©´ ìë™ì¢…ë£Œ.
 				break;
 			}
 			if (i == currentPage) {
@@ -73,7 +73,7 @@ public class PagingUtil {
 				pagingHtml.append(i);
 				pagingHtml.append("</font></b>");
 			} else {
-				if(keyWord==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+				if(keyWord==null){//ê²€ìƒ‰ ë¯¸ì‚¬ìš©ì‹œ
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
 				}else{
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum=");
@@ -86,14 +86,14 @@ public class PagingUtil {
 			pagingHtml.append("&nbsp;");
 		}
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
-		// ´ÙÀ½ block ÆäÀÌÁö
+		// ë‹¤ìŒ block í˜ì´ì§€
 		if (totalPage - startPage >= blockPage) {
-			if(keyWord==null){//°Ë»ö ¹Ì»ç¿ë½Ã
+			if(keyWord==null){//ê²€ìƒ‰ ë¯¸ì‚¬ìš©ì‹œ
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
 			}else{
 				pagingHtml.append("<a href="+pageUrl+"?keyField="+keyField+"&keyWord="+keyWord+"&pageNum="+ (endPage + 1) + addKey +">");
 			}
-			pagingHtml.append("´ÙÀ½");
+			pagingHtml.append("ë‹¤ìŒ");
 			pagingHtml.append("</a>");
 		}
 	}

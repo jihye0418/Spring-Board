@@ -3,49 +3,49 @@ package com.board.util;
 import java.io.File;
 
 public class FileUtil {
-	//¾÷·Îµå ÆÄÀÏ ÀúÀå°æ·Î
+	//ì—…ë¡œë“œ íŒŒì¼ ì €ì¥ê²½ë¡œ
 	public static final String UPLOAD_PATH="C:/webtest/4.jsp/sou/ProjectSpring2/src/main/webapp/upload";
 	
-	//¿øº» ÆÄÀÏ
+	//ì›ë³¸ íŒŒì¼
 	public static String rename(String qna_img) throws Exception {
 		if(qna_img==null) return null; 
 		
-		//»õ ÀÌ¸§ Á¤ÇÏ±â(½Ã½ºÅÛ³¯Â¥+·£´ı¼ıÀÚ) _ È®ÀåÀÚ Á¦¿Ü ÆÄÀÏ¸í
+		//ìƒˆ ì´ë¦„ ì •í•˜ê¸°(ì‹œìŠ¤í…œë‚ ì§œ+ëœë¤ìˆ«ì) _ í™•ì¥ì ì œì™¸ íŒŒì¼ëª…
 		String newName=Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
-		System.out.println("newName(³­¼ö)=>"+newName);
+		System.out.println("newName(ë‚œìˆ˜)=>"+newName);
 		return rename(qna_img,newName);
 	}
 	
-	//È®ÀåÀÚ Æ÷ÇÔ ÆÄÀÏ¸í
+	//í™•ì¥ì í¬í•¨ íŒŒì¼ëª…
 	public static String rename(String qna_img, String newName) throws Exception{
 		if(qna_img==null) return null; 
 		
-		//È®ÀåÀÚ ±¸ÇÏ±â
+		//í™•ì¥ì êµ¬í•˜ê¸°
 		int idx=qna_img.lastIndexOf("."); 
 		String extention="";
 		String newFileName="";
 		
 		if(idx!=-1) {
-			extention=qna_img.substring(idx);//.ºÎÅÍ ¹®ÀÚ ³¡±îÁö == È®ÀåÀÚ. 
-			System.out.println("È®ÀåÀÚ È®ÀÎ(extention=>" + extention);
+			extention=qna_img.substring(idx);//.ë¶€í„° ë¬¸ì ëê¹Œì§€ == í™•ì¥ì. 
+			System.out.println("í™•ì¥ì í™•ì¸(extention=>" + extention);
 		}
 		
-		//»õ ÆÄÀÏ¸í
+		//ìƒˆ íŒŒì¼ëª…
 		int newIdx=newName.lastIndexOf(".");
 		if(newIdx!=-1) {
 			newName=newName.substring(0,newIdx);
-			System.out.println("º¯°æµÈ ÆÄÀÏ¸í=>"+newName);
+			System.out.println("ë³€ê²½ëœ íŒŒì¼ëª…=>"+newName);
 		}
 			
 			newFileName=newName+extention.toLowerCase();
-			System.out.println("»õ·Î º¯°æµÈ ÆÄÀÏ¸í+È®ÀåÀÚ=>"+newFileName);
+			System.out.println("ìƒˆë¡œ ë³€ê²½ëœ íŒŒì¼ëª…+í™•ì¥ì=>"+newFileName);
 			return newFileName;
 		}
 		
-	//±Û ¼öÁ¤ÇÒ ¶§ ¾÷·Îµå µÈ ÆÄÀÏµµ ¼öÁ¤ °¡´ÉÇÏ°Ô -> ±âÁ¸ ¾÷·ÎµåµÈ ÆÄÀÏ »èÁ¦ ÈÄ »õ·Î ¾÷·Îµå. 
+	//ê¸€ ìˆ˜ì •í•  ë•Œ ì—…ë¡œë“œ ëœ íŒŒì¼ë„ ìˆ˜ì • ê°€ëŠ¥í•˜ê²Œ -> ê¸°ì¡´ ì—…ë¡œë“œëœ íŒŒì¼ ì‚­ì œ í›„ ìƒˆë¡œ ì—…ë¡œë“œ. 
 		public static void removeFile(String qna_img) {
 			File file=new File(UPLOAD_PATH,qna_img); 
-			//ÆÄÀÏ À¯¹« È®ÀÎ
+			//íŒŒì¼ ìœ ë¬´ í™•ì¸
 			if(file.exists()) file.delete();
 		}
 }

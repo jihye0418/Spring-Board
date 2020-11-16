@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.dao.BoardDao;
 import com.board.domain.BoardCommand;
@@ -15,16 +16,27 @@ import com.board.util.FileUtil;
 
 @Controller
 public class DeleteController {
-//Logger °´Ã¼ »ı¼º
+//Logger ê°ì²´ ìƒì„±
 	private Logger log=Logger.getLogger(this.getClass());
 	
-//dbÁ¢¼Ó
+//dbì ‘ì†
 	@Autowired
 	private BoardDao boardDao;
 	
-	//»èÁ¦ ÆûÀ¸·Î ÀÌµ¿
-	@RequestMapping("/qnaDelete.do" )
-	public String delete(@RequestParam("qna_num") int qna_num) {
+	//ì‚­ì œ
+	@RequestMapping(value="/qnadelete.do", method = RequestMethod.GET)
+	public String form(@ModelAttribute("command") BoardCommand command) {
+		System.out.println("form()í˜¸ì¶œë¨");
+		
+		
+		
+		BoardCommand board=null; //ë ˆì½”ë“œ ì „ì²´ë¥¼ boardë¡œ ì €ì¥.
+		board=boardDao.selectBoard(command.getQna_num());
+		boardDao.deleteBoard(command.getQna_num()); 
+		if(board.getQna_img()!=null) {//ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆë‹¤ë©´
+			FileUtil.removeFile(board.getQna_img());
+		}
+		
 		return "qnaDelete";
 	}
 }

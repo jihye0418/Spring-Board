@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger; //·Î±×°´Ã¼¿Í °ü·ÃµÈ Å¬·¡½º
+import org.apache.log4j.Logger; //ë¡œê·¸ê°ì²´ì™€ ê´€ë ¨ëœ í´ëž˜ìŠ¤
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +20,14 @@ import com.board.util.PagingUtil;
 @Controller
 public class ListController {
 	
-	//·Î±×°´Ã¼ »ý¼º
+	//ë¡œê·¸ê°ì²´ ìƒì„±
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	//DAOÅ¬·¡½º °´Ã¼¸¦ ¾ò¾î¿È
+	//DAOí´ëž˜ìŠ¤ ê°ì²´ë¥¼ ì–»ì–´ì˜´
 	@Autowired
 	private BoardDao boardDao;
 
-	//À¥»ó¿¡ È£ÃâÇÒ ¸Þ¼­µå
+	//ì›¹ìƒì— í˜¸ì¶œí•  ë©”ì„œë“œ
 		@RequestMapping("/qnaList.do")
 		public ModelAndView process(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
 													@RequestParam(value="keyField",defaultValue="")String keyField,
@@ -43,10 +43,10 @@ public class ListController {
 			map.put("keyField",keyField);
 			map.put("keyWord",keyWord); 
 		
-			//ÆäÀÌÂ¡Ã³¸®¸¦ ÇÏ±â À§ÇØ ÃÑ ·¹ÄÚµå ¼ö ÇÊ¿ä
+			//íŽ˜ì´ì§•ì²˜ë¦¬ë¥¼ í•˜ê¸° ìœ„í•´ ì´ ë ˆì½”ë“œ ìˆ˜ í•„ìš”
 			int count = boardDao.getRowCount(map);
 		
-			//ÆäÀÌÂ¡Ã³¸® -> PaginUtilÅ¬·¡½ºÀÇ °´Ã¼¸¦ »ý¼ºÇØ¼­ »ç¿ë.
+			//íŽ˜ì´ì§•ì²˜ë¦¬ -> PaginUtilí´ëž˜ìŠ¤ì˜ ê°ì²´ë¥¼ ìƒì„±í•´ì„œ ì‚¬ìš©.
 			PagingUtil page=new PagingUtil(currentPage, count, 10,10,"qnaList.do");
 			map.put("start", page.getStartCount());
 			map.put("end", page.getEndCount());
@@ -59,7 +59,7 @@ public class ListController {
 			}else {
 				list=Collections.EMPTY_LIST;
 			}
-			System.out.println("ListControllerÅ¬·¡½ºÀÇ count=>" + count);
+			System.out.println("ListControllerí´ëž˜ìŠ¤ì˜ count=>" + count);
 			
 			ModelAndView mav = new ModelAndView("qnaList");
 			mav.addObject("count",count);

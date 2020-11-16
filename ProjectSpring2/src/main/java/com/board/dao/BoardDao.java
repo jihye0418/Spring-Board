@@ -8,33 +8,33 @@ import org.apache.ibatis.annotations.Select;
 import com.board.domain.BoardCommand;
 
 public interface BoardDao {
-	//±Û ¸ñ·Ï º¸±â
+	//ê¸€ ëª©ë¡ ë³´ê¸°
 	public List<BoardCommand> list(Map<String,Object> map);
 	
-	//ÃÑ ·¹ÄÚµå ¼ö
+	//ì´ ë ˆì½”ë“œ ìˆ˜
 	public int getRowCount(Map<String,Object> map);
 	
-	//ÃÖ´ë°ª
+	//ìµœëŒ€ê°’
 	public int getNewQna_num();
 	
-	//±Û¾²±â
+	//ê¸€ì“°ê¸°
 	public void insertqnaBoard(BoardCommand board);
 	
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	public void updateQnaViews(int qna_num);
 	
-	//»ó¼¼º¸±â
+	//ìƒì„¸ë³´ê¸°
 	public BoardCommand selectBoard(int qna_num);
 	
-	//ÀÌÀü±Û
+	//ì´ì „ê¸€
 	public BoardCommand beforeList(int qna_num);
 	
-	//´ÙÀ½±Û
+	//ë‹¤ìŒê¸€
 	public BoardCommand nextList(int qna_num);
 	
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	public void updateBoard(BoardCommand board);
 	
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	public void deleteBoard(int qna_num);
 }

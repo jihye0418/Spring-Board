@@ -5,7 +5,7 @@ public class StringUtil {
 		
 		if(msg == null) return null;
 		
-		//replace(º¯°æÀü´Ü¾î, º¯°æÈÄ´Ü¾î)
+		//replace(ë³€ê²½ì „ë‹¨ì–´, ë³€ê²½í›„ë‹¨ì–´)
 		return msg.replace("\r\n", "<br>")
                   .replace("\n", "<br>");
 	}
