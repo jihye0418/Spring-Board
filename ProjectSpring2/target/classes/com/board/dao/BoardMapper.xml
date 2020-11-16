@@ -55,6 +55,26 @@
 	<insert id="insertqnaBoard" parameterType="BoardCommand">
 		insert into qna values(#{qna_num},'테스트',#{qna_title},#{qna_content},sysdate,0,#{qna_ref},#{qna_re_level},#{qna_re_step},#{qna_category},#{qna_authority},#{qna_img,jdbcType=VARCHAR},#{qna_ask})
 	</insert>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateQnaViews" parameterType="int">
+		update qna set qna_views=qna_views+1 where qna_num=#{qna_num}
+	</update>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="selectBoard" parameterType="int" resultType="BoardCommand">
+		select * from qna where qna_num=#{qna_num}
+	</select>
+	
+	<!-- 이전글 보기 -->
+	<select id="beforeContent" parameterType="string" resultType="BoardCommand">
+		select qna_title from qna where qna_num=#{qna_num}-1
+	</select>
+	
+	<!-- 다음글 보기 -->
+	<select id="afterContent" parameterType="string" resultType="BoardCommand">
+		select qna_title from qna where qna_num=#{qna_num}+1
+	</select>
 </mapper>
 
 

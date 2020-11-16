@@ -1,0 +1,41 @@
+.board_bg{
+  background-color: var(--board-header);
+  height: 52px;
+  line-height: 52px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.board_title{
+  font-size: 20px;
+  font-weight: 600;
+  float: left;
+}
+
+.board_info{
+  float: right;
+}
+
+.board_info span{
+  font-size: 14px;
+  padding: 0 10px 0 5px;
+}
+
+.board_info span:last-child{
+  padding-right: 0;
+}
+
+.board_content{
+  border-bottom: 1px solid #ccc;
+}
+
+
+/* 유효성 검사 */
+.bad{
+  display: block;
+}
+
+label.bad{
+  color: var(--primary);
+  width: 100%;
+}

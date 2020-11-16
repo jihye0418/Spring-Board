@@ -14,7 +14,8 @@
     
 <bean class="com.board.dao.BoardDaoImpl"/>
 <bean class="com.board.controller.ListController"/><!-- 글목록 -->
-<bean class="com.board.controller.WriteController"/>
+<bean class="com.board.controller.WriteController"/><!-- 글쓰기 -->
+<bean class="com.board.controller.DetailController"/><!-- 글 상세보기 -->
 
 <bean id="viewResolver"
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -29,5 +30,7 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="defaultEncoding" value="utf-8"/>
 </bean>
 
+<!-- 파일 다운로드 -->
+<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 
 </beans>

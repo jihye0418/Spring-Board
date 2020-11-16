@@ -17,4 +17,16 @@ public interface BoardDao {
 	
 	//4. 글쓰기
 	public void insertqnaBoard(BoardCommand board);
+	
+	//5. 조회수 증가
+	public void updateQnaViews(int qna_num);
+	
+	//6. 상세보기
+	public BoardCommand selectBoard(int qna_num);
+	
+	//이전글
+	public BoardCommand beforeContent(int qna_num);
+	
+	//다음글
+	public BoardCommand afterContent(int qna_num);
 }

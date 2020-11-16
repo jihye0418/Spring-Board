@@ -53,7 +53,7 @@
             <td>${article.qna_num}</td>
 			<td>${article.qna_ask }</td>
             <td class="text-left">
-              <a href="qnaContent.do?qna_num=${article.qna_num}">${article.qna_title}</a>
+              <a href="qnaDetail.do?qna_num=${article.qna_num}">${article.qna_title}</a>
               <c:if test="${article.qna_views>150}">
               	<span class="badge badge-danger">HOT</span>
               </c:if>
@@ -81,12 +81,14 @@
 <!-- footer -->
     <c:import url="/WEB-INF/views/template/footer.jsp"/>
     
-<!-- JavaScript -->
+<!-- js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<script src="https://kit.fontawesome.com/bf15dcb45d.js" crossorigin="anonymous"></script>
-    <!-- 스크롤탑 -->
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <!-- 글쓰기 api -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- 유효성검사 -->
+    <script src="js/jquery.validate.min.js"></script>
+    <!-- 게시판용 js -->
+    <script src="js/board.js"></script>
 </body>
 </html>
