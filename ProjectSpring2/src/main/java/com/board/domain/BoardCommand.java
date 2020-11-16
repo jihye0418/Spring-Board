@@ -9,15 +9,17 @@ public class BoardCommand {
 	private Date qna_date;
 	private MultipartFile upload;
 	
+	
 	public int getQna_num() {
-		System.out.println("getqna_num확인(qna_num)=>"+qna_num);
+		System.out.println("qna_num[getter]=>"+qna_num);
 		return qna_num;
 	}
 	public void setQna_num(int qna_num) {
 		this.qna_num = qna_num;
-		System.out.println("setqna_num확인(qna_num)=>"+qna_num);
+		System.out.println("qna_num[setter]=>"+qna_num);
 	}
 	public int getQna_views() {
+		System.out.println("qna_views=>"+qna_views);
 		return qna_views;
 	}
 	public void setQna_views(int qna_views) {
@@ -42,48 +44,54 @@ public class BoardCommand {
 		this.qna_re_level = qna_re_level;
 	}
 	public int getQna_category() {
+		System.out.println("category=>"+qna_category);
 		return qna_category;
 	}
 	public void setQna_category(int qna_category) {
 		this.qna_category = qna_category;
 	}
 	public int getQna_authority() {
+		System.out.println("qna_authority=>"+qna_authority);
 		return qna_authority;
 	}
 	public void setQna_authority(int qna_authority) {
 		this.qna_authority = qna_authority;
 	}
 	public String getMem_id() {
-		System.out.println("getMem_id=>"+mem_id);
+		System.out.println("mem_id=>"+mem_id);
 		return mem_id;
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
-		System.out.println("setMem_id=>"+mem_id);
 	}
 	public String getQna_content() {
-		System.out.println("getQna_content()호출됨=>"+qna_content);
+		System.out.println("qna_content [getter]=>"+qna_content);
 		return qna_content;
 	}
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
-		System.out.println("setQna_content()호출됨=>"+qna_content);
+		System.out.println("qna_content [setter]=>"+qna_content);
 	}
 	public String getQna_img() {
-		System.out.println("getQna_img()호출됨=>"+qna_img);
+		System.out.println("qna_img=>"+qna_img);
 		return qna_img;
 	}
 	public void setQna_img(String qna_img) {
 		this.qna_img = qna_img;
-		System.out.println("setQna_img()호출됨=>!"+qna_img);
 	}
 	public String getQna_title() {
-		System.out.println("getQna_title()호출됨=>"+qna_title);
 		return qna_title;
 	}
 	public void setQna_title(String qna_title) {
+		System.out.println("qna_title=>"+qna_title);
 		this.qna_title = qna_title;
-		System.out.println("setQna_title() 호출됨=>"+qna_title);
+	}
+	public String getQna_ask() {
+		return qna_ask;
+	}
+	public void setQna_ask(String qna_ask) {
+		System.out.println("qna_ask=>"+qna_ask);
+		this.qna_ask = qna_ask;
 	}
 	public Date getQna_date() {
 		return qna_date;
@@ -92,19 +100,11 @@ public class BoardCommand {
 		this.qna_date = qna_date;
 	}
 	public MultipartFile getUpload() {
-		System.out.println("getUpload()호출됨(upload)=>"+upload);
 		return upload;
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
-		System.out.println("setUpload()확인(upload)=!"+upload);
 	}
-	public String getQna_ask() {
-		System.out.println("getQna_ask=>"+qna_ask);
-		return qna_ask;
-	}
-	public void setQna_ask(String qna_ask) {
-		this.qna_ask = qna_ask;
-		System.out.println("setQna_ask()호출됨=>"+qna_ask);
-	}
+	
+	
 }

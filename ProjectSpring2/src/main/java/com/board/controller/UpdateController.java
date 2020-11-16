@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.board.dao.BoardDao;
 import com.board.domain.BoardCommand;
 import com.board.util.FileUtil;
 
+@Component
 @Controller
 public class UpdateController {
 //Logger
@@ -28,8 +30,6 @@ public class UpdateController {
 	//
 @RequestMapping(value="/qnaUpdate.do", method=RequestMethod.GET )
 	public ModelAndView form(@RequestParam("qna_num") int qna_num) {
-		System.out.println("글수정 페이지로 이동!");
-		System.out.println("select 값 받아옴!=>"+boardDao);
 		BoardCommand boardCommand=boardDao.selectBoard(qna_num);
 		//이동할 페이지명, 키명, 전달할 값
 		return new ModelAndView("qnaUpdate","command",boardCommand);
@@ -72,6 +72,6 @@ public String submit(@ModelAttribute("command") BoardCommand command) {
 		}
 	}
 }
-		return "redirect:/qnaList.do"; 
+		return "redirect:/qnaList.do?qna_category="+command.getQna_category(); 
 	}
 }

@@ -4,15 +4,19 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.board.dao.BoardDao;
 import com.board.domain.BoardCommand;
 import com.board.util.FileUtil;
 
+@Component
 @Controller
 public class WriteController {
 //로그객체 생성
@@ -23,31 +27,33 @@ public class WriteController {
 	private BoardDao boardDao;
 
 @RequestMapping(value="/qnawrite.do", method = RequestMethod.GET)
-public String form() {
-	System.out.println("form()호출됨");
-	return "qnaWrite";
+public ModelAndView form( @RequestParam(value="qna_category") int qna_category) {
+
+	ModelAndView mav = new ModelAndView("qnaWrite");
+	mav.addObject("qna_category",qna_category);
+	return mav;
 	}
+
+
 
 @RequestMapping(value="/qnawrite.do", method = RequestMethod.POST)
 public String submit(@ModelAttribute("command") BoardCommand command) {
-	    System.out.println("submit() 호출됨");
+	System.out.println("글쓰기 command"+command);
 	if(log.isDebugEnabled()) {
-		log.debug("BoardCommand=>"+command);
+		log.debug("글쓰기 BoardCommand=>"+command);
 	}
 	//글쓰기 및 업로드
 	try {
 		String newName="";
-		System.out.println("command.getUpload()=>"+command.getUpload());
+		
+		//파일
 		if(!command.getUpload().isEmpty()) {
 			newName=FileUtil.rename(command.getUpload().getOriginalFilename());
-			System.out.println("newName=>"+newName);
 			command.setQna_img(newName);
 		}
 		
 		//글 번호 +1
 		int newQna_num=boardDao.getNewQna_num()+1;
-		System.out.println(command.toString());
-		System.out.println("newSeq=>"+newQna_num);
 		command.setQna_num(newQna_num);
 		
 		//글쓰기
@@ -61,6 +67,6 @@ public String submit(@ModelAttribute("command") BoardCommand command) {
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
-		return "redirect:/qnaList.do"; 
+		return "redirect:/qnaList.do?qna_category="+command.getQna_category(); 
 	}
 }

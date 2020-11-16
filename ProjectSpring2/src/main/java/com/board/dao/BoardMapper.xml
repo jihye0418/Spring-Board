@@ -6,7 +6,7 @@
 <mapper namespace="Board">  
 	<!-- 글 목록 -->
 	<select id="selectList" parameterType="map" resultType="BoardCommand">
-		select qna_num,mem_id,qna_title,qna_content,qna_ref,qna_re_step,qna_re_level,qna_views,qna_date,qna_img,qna_authority,qna_ask
+		select qna_num,mem_id,qna_title,qna_content,qna_views,qna_date,qna_img,qna_authority,qna_ask,qna_category
 		from (
 			select a.*,rownum rnum
 			from(
@@ -22,11 +22,11 @@
 						mem_id like '%' || #{keyWord} || '%'
 					</if>
 				</where>
-				order by qna_num desc, qna_ref desc, qna_re_step asc
-			) a
+				order by qna_num desc
+			)a
 		)
 		<![CDATA[
-			where rnum >= #{start} and rnum <= #{end}
+			where qna_category=#{qna_category} and (rnum >= #{start} and rnum <= #{end})
 		]]>
 	</select>
 	
@@ -34,21 +34,27 @@
 	<select id="selectCount" parameterType="map" resultType="Integer">
 		select count(*) from qna
 		<where>
-					<if test="keyWord!=null and keyField=='qna_title'">
-						qna_title like '%' || #{keyWord} || '%'
-					</if>
-					<if test="keyWord!=null and keyField=='qna_content'">
-						qna_content like '%' || #{keyWord} || '%'
-					</if>
-					<if test="keyWord!=null and keyField=='mem_id'">
-						mem_id like '%' || #{keyWord} || '%'
-					</if>
+			<if test="keyWord!=null and keyField=='qna_title'">
+				qna_title like '%' || #{keyWord} || '%'
+			</if>
+			<if test="keyWord!=null and keyField=='qna_content'">
+				qna_content like '%' || #{keyWord} || '%'
+			</if>
+			<if test="keyWord!=null and keyField=='mem_id'">
+				mem_id like '%' || #{keyWord} || '%'
+			</if>
+			and qna_category=#{qna_category}
 		</where>
 	</select>
 	
 	<!-- 최대값 -->
 	<select id="getNewQna_num" resultType="int">
-		select max(qna_num) from qna
+		select max(qna_num) from qna 
+	</select>
+	
+	<!--검색  -->
+	<select id="getSearchCaterogry" resultType="int">
+		select * from qna where qna_category=#{qna_caregory}
 	</select>
 	
 	<!-- 글쓰기 -->
@@ -66,20 +72,21 @@
 		select * from qna where qna_num=#{qna_num}
 	</select>
 	
-	<!-- 이전글  -->
-	<select id="beforeList" resultType="BoardCommand" parameterType="int">
-		 select qna_title,qna_num from qna where qna_num=(
-			select max(qna_num) from qna where qna_num<![CDATA[< ]]>#{board.qna_num ,jdbcType=VARCHAR}
+	<!-- 이전글
+	<select id="beforeList" resultType="BoardCommand" parameterType="map">
+		 select qna_title,qna_num from qna where qna_category=#{board.qna_category} and qna_num=(
+			select max(qna_num) from qna where qna_num<![CDATA[< ]]>#{qna_num ,jdbcType=VARCHAR}
 			) 
 			
-	</select>
+	</select>-->
 	
-	<!-- 다음글  -->
-	<select id="nextList" resultType="BoardCommand" >
-		select qna_title,qna_num from qna where qna_num=(
-			select min(qna_num) from qna where qna_num<![CDATA[> ]]>#{board.qna_num ,jdbcType=VARCHAR}
+	<!-- 다음글  
+	<select id="nextList" resultType="BoardCommand" parameterType="map">
+		select qna_title,qna_num,qna_category from qna 
+		where qna_category=#{qna_category} and qna_num=(
+			select min(qna_num) from qna where qna_num<![CDATA[> ]]>#{qna_num ,jdbcType=VARCHAR}
 			) 
-	</select>
+	</select>-->
 	
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="BoardCommand">
@@ -87,7 +94,6 @@
 		where qna_num=#{qna_num}
 	</update>
 
-	
 	<!-- 글 삭제 -->
 	<delete id="deleteBoard" parameterType="int">
 		delete from qna where qna_num=#{qna_num}

@@ -14,9 +14,9 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdownv" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">이야기</a>
               <div class="dropdown-menu" aria-labelledby="dropdownv">
-                <a class="dropdown-item" href="qnaList.do?category=0     ">공지사항</a>
-                <a class="dropdown-item" href="#">질문게시판</a>
-                <a class="dropdown-item" href="#">자주묻는질문</a>
+                <a class="dropdown-item" href="qnaList.do?qna_category=1">공지사항</a>
+                <a class="dropdown-item" href="qnaList.do?qna_category=2">질문게시판</a>
+                <a class="dropdown-item" href="qnaList.do?qna_category=3">자주묻는질문</a>
               </div>
             </li>
             <li class="nav-item">

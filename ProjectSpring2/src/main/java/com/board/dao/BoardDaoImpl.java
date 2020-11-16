@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Component;
 
 import com.board.domain.BoardCommand;
 
+@Component
 public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 
 	public List<BoardCommand> list(Map<String, Object> map) {
@@ -40,13 +42,15 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	}
 	
 	//이전글
-	public BoardCommand beforeList(int qna_num) {
-		return (BoardCommand)getSqlSession().selectOne("beforeList",qna_num);
+	public List<BoardCommand> beforeList(Map<String,Integer> b) {
+		List<BoardCommand> beforeList=getSqlSession().selectList("beforeList",b);
+		return beforeList;
 	}
 	
 	//다음글
-	public BoardCommand nextList(int qna_num) {
-		return (BoardCommand)getSqlSession().selectOne("nextList",qna_num);
+	public List<BoardCommand> nextList(Map<String,Integer> n) {
+		List<BoardCommand> nextList=getSqlSession().selectList("nextList",n);
+		return nextList;
 	}
 	
 	//글 수정

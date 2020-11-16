@@ -27,10 +27,10 @@ public interface BoardDao {
 	public BoardCommand selectBoard(int qna_num);
 	
 	//이전글
-	public BoardCommand beforeList(int qna_num);
+	public List<BoardCommand> beforeList(Map<String,Integer> b);
 	
 	//다음글
-	public BoardCommand nextList(int qna_num);
+	public List<BoardCommand> nextList(Map<String,Integer> n);
 	
 	//글 수정
 	public void updateBoard(BoardCommand board);

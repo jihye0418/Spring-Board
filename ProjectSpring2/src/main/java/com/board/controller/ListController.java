@@ -1,6 +1,5 @@
 package com.board.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger; //로그객체와 관련된 클래스
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +17,7 @@ import com.board.dao.BoardDao;
 import com.board.domain.BoardCommand;
 import com.board.util.PagingUtil;
 
+@Component
 @Controller
 public class ListController {
 	
@@ -31,17 +32,22 @@ public class ListController {
 		@RequestMapping("/qnaList.do")
 		public ModelAndView process(@RequestParam(value="pageNum", defaultValue="1") int currentPage, 
 													@RequestParam(value="keyField",defaultValue="")String keyField,
-													@RequestParam(value="keyWord",defaultValue="")String keyWord) {
+													@RequestParam(value="keyWord",defaultValue="")String keyWord,
+													@RequestParam("qna_category")int qna_category,
+													BoardCommand command) {
 			
 			if(log.isDebugEnabled()) {
 				log.debug("currentPage:"+currentPage);
 				log.debug("keyField:"+keyField);
 				log.debug("keyWord:"+keyWord);
+				log.debug("qna_category:"+qna_category);
+				log.debug("BoardCommand:"+command);
 			}
 			
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("keyField",keyField);
 			map.put("keyWord",keyWord); 
+			map.put("qna_category", qna_category);
 		
 			//페이징처리를 하기 위해 총 레코드 수 필요
 			int count = boardDao.getRowCount(map);
@@ -63,9 +69,11 @@ public class ListController {
 			
 			ModelAndView mav = new ModelAndView("qnaList");
 			mav.addObject("count",count);
-			mav.addObject("list",list);
-			mav.addObject("pagingHtml",page.getPagingHtml());
-
+			mav.addObject("list",list);//pageNum (X)
+			//추가
+			mav.addObject("pageNum",currentPage);//request.setAttribute("pageNum",currentPage) //${pageNum}
+			mav.addObject("pagingHtml",page.getPagingHtml());//이전,다음의 링크문자열
+			mav.addObject("qna_category", qna_category);
 			return mav;
 		}
 }

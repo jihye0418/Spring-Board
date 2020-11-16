@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>닥터쿡 Q&A</title>
+<title>닥터쿡 공지사항</title>
 <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,7 +20,17 @@
 
 <!-- 본문 -->
 <div class="container">
-      <h2 class="text-center pt-4 pb-4">닥터쿡 Q&A</h2>
+      <h2 class="text-center pt-4 pb-4">
+      	<c:if test="${qna_category==1}">
+      		닥터쿡 공지사항
+      	</c:if>
+      	<c:if test="${qna_category==2}">
+      		닥터쿡 Q&A
+      	</c:if>
+      	<c:if test="${qna_category==3}">
+      		닥터쿡 자주 묻는 질문
+      	</c:if>
+      	</h2>
       <form action="qnaUpdate.do" enctype="multipart/form-data" method="post"   id="writeform" novalidate>
         <div class="card shadow p-4 border-left-primary mb-3">
           <div class="form-group">
@@ -28,6 +38,7 @@
             <div class="input-group">
             	<input type="hidden" name="qna_num" value="${command.qna_num }">
             	<input type="hidden" name="mem_id" value="${command.mem_id }">
+            	<input type="hidden" name="qna_category" value="${command.qna_category }">
               <select class="custom-select col-md-2 col-3" name="qna_ask" id="qna_ask">
                 <option value="${command.qna_ask}">${command.qna_ask}</option>
               </select>
@@ -63,7 +74,7 @@
     <c:import url="/WEB-INF/template/footer.jsp"/>
     
 <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- 글쓰기 api -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 유효성검사 -->
