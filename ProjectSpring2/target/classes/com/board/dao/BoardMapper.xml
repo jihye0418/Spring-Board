@@ -83,9 +83,10 @@
 	
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="BoardCommand">
-		update qna set mem_id="테스트",qna_ask=#{qna_ask},qna_title=#{qna_title},qna_content=#{qna_content},qna_img=#{qna_img:VARCHAR}
+		update qna set mem_id='테스트',qna_ask=#{qna_ask},qna_title=#{qna_title},qna_content=#{qna_content},qna_img=#{qna_img:VARCHAR}
 		where qna_num=#{qna_num}
 	</update>
+
 	
 	<!-- 글 삭제 -->
 	<delete id="deleteBoard" parameterType="int">

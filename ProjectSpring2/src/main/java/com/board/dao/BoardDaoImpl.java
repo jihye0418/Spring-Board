@@ -51,13 +51,11 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	
 	//글 수정
 	public void updateBoard(BoardCommand board) {
-		getSqlSession().update("qnaUpdate", board);
-		
+		getSqlSession().update("updateBoard", board);
 	}
 	
 	//글 삭제
-	public void qnaDelete(int seq) {
-		getSqlSession().delete("qnaDelete", seq);
-		
+	public void deleteBoard(int qna_num) {
+		getSqlSession().delete("deleteBoard", qna_num);
 	}
 }

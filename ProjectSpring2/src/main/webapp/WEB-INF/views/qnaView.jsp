@@ -42,7 +42,7 @@
       <div class="clearfix">
         <div class="float-right">
           <input type="button" class="btn btn-success" value="답변달기" onclick="location.href='qnaWrite.do'">
-          <input type="button" class="btn btn-info" value="수정하기" onclick="location.href='qnaUpdate.do?qna_num=${board.qna_num}'">
+          <input type="button" class="btn btn-info" value="수정" onclick="location.href='qnaUpdate.do?qna_num=${board.qna_num}'">
           <input type="button" class="btn btn-danger" value="삭제" onclick="location.href='qnaDelete.do?qna_num=${board.qna_num}'" >
           <input type="button" class="btn btn-primary" value="목록" onclick="location.href='qnaList.do'">
         </div>

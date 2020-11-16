@@ -26,15 +26,12 @@
           <div class="form-group">
             <label for="qna_title">제목</label>
             <div class="input-group">
+            	<input type="hidden" name="qna_num" value="${command.qna_num }">
+            	<input type="hidden" name="mem_id" value="${command.mem_id }">
               <select class="custom-select col-md-2 col-3" name="qna_ask" id="qna_ask">
-                <option value="" >선택하세요</option>
-                <option value="주문/결제" <c:if test="${qna_ask eq '주문/결제'}">selected</c:if>>주문/결제</option>
-                <option value="취소/교환/반품"<c:if test="${qna_ask eq '취소/교환/반품'}">selected</c:if>>취소/교환/반품</option>
-                <option value="상품배송" <c:if test="${qna_ask eq '상품배송'}">selected</c:if>>상품배송</option>
-                <option value="기타" <c:if test="${qna_ask eq '기타'}">selected</c:if>>기타</option>
+                <option value="${command.qna_ask}">${command.qna_ask}</option>
               </select>
-              <input type="hidden" name="qna_num" value="${command.qna_num }">
-              <input type="text" class="form-control" value="${command.qna_title}" id="qna_title">
+              <input type="text" class="form-control" value="${command.qna_title}" id="qna_title" name="qna_title">
           		<label id="qna_title-error" class="bad" for="qna_title" style="display:none"></label>
             </div>
           </div>
@@ -68,7 +65,6 @@
 <!-- js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- 글쓰기 api -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 유효성검사 -->
     <script src="js/jquery.validate.min.js"></script>
