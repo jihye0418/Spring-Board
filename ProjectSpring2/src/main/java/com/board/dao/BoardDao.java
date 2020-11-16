@@ -11,4 +11,10 @@ public interface BoardDao {
 	
 	//2. 총 레코드 수
 	public int getRowCount(Map<String,Object> map);
+	
+	//3. 최대값
+	public int getNewQna_num();
+	
+	//4. 글쓰기
+	public void insertqnaBoard(BoardCommand board);
 }

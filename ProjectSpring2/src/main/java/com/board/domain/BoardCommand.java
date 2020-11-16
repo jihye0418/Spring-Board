@@ -5,9 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BoardCommand {
 	private int qna_num, qna_views, qna_ref, qna_re_step, qna_re_level, qna_category, qna_authority;
-	private String mem_id, qna_content, qna_img, qna_title;
+	private String mem_id, qna_content, qna_img, qna_title, qna_ask;
 	private Date qna_date;
 	private MultipartFile upload;
+	
 	public int getQna_num() {
 		return qna_num;
 	}
@@ -85,7 +86,13 @@ public class BoardCommand {
 	}
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
+		System.out.println("setUpload()메서드 호출됨(upload)=!"+upload);
 	}
-
+	public String getQna_ask() {
+		return qna_ask;
+	}
+	public void setQna_ask(String qna_ask) {
+		this.qna_ask = qna_ask;
+	}
 	
 }

@@ -17,4 +17,13 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	public int getRowCount(Map<String, Object> map) {
 		return getSqlSession().selectOne("selectCount",map);
 	}
+	
+	public int getNewQna_num() {
+		int newQnaNum=(Integer)getSqlSession().selectOne("getNewQna_num");
+		return newQnaNum;
+	}
+	
+	public void insertqnaBoard(BoardCommand board) {
+		getSqlSession().insert("insertqnaBoard",board);
+	}
 }

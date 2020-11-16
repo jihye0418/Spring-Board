@@ -8,11 +8,13 @@
   font-style: normal;
 }
 
-/* 기본 글자 */
+/* 기본 글자, box-sizing */
 body{
   color: var(--font);
   font-family: 'NanumSquareRound','Noto Sans';
+  box-sizing: border-box;
 }
+
 
 /* ======================
           색상
@@ -105,6 +107,19 @@ body{
   box-shadow: none;
 }
 
+/* info 버튼 */
+.btn-info {
+  color: var(--white);
+  padding:  .4em 1.2em;
+}
+
+.btn-info:focus, .btn-info.focus, 
+.btn-info:not(:disabled):not(.disabled).active:focus,
+.btn-info:not(:disabled):not(.disabled):active:focus,
+.show>.btn-info.dropdown-toggle:focus{
+  box-shadow: none;
+}
+
 /* ======================
           폼
 ========================*/
@@ -160,6 +175,17 @@ textarea{
   border-color:var(--primary);
   outline:0;
   box-shadow:none;
+}
+
+/* 유효성 검사 */
+.bad{
+  display: block;
+}
+
+label.bad{
+  color: var(--primary);
+  width: 100%;
+  font-size: 13px;
 }
 
 /* ======================
@@ -408,3 +434,10 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .foote_bottom_ul_amrc li a { color:#999; margin:0 12px;}
 .foote_bottom_ul_amrc li a:hover{color:#ff6f61;}
 .container p a:hover{color:#ff6f61;}
+
+
+
+/* 좌측 색상 선 */
+.border-left-primary {
+  border-left: 0.25rem solid var(--primary) !important;
+}

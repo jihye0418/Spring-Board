@@ -16,7 +16,6 @@ $( document ).ready( function() {
     $(this).toggleClass("menu-on");
   });
 
-
 } );
 
 	

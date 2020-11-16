@@ -15,40 +15,52 @@
 <!-- 본문 -->
 <div class="container">
       <h2 class="text-center pt-4 pb-4">닥터쿡 Q&A</h2>
-      <form method="post" action="qnaWrite.do" novalidate>
-        <!-- 검색 -->
-          <div class="input-group mb-3">
-            <select class="custom-select col-md-2 col-3" id="ask_qna" name="ask_qna">
-              <option value="">선택하세요</option>
-              <option value="order">주문/결제</option>
-              <option value="cancle">취소/교환/반품</option>
-              <option value="delivery">상품배송</option>
-              <option value="etc">기타</option>
-            </select>
-            <input type="text" class="form-control" name="qna_title" id="qna_title">
-            <label id="ask_qna-error" class="bad" for="ask_qna" style="display:none"></label>
-            <label id="qna_title-error" class="bad" for="qna_title" style="display:none"></label>
+      <form action="qnawrite.do" enctype="multipart/form-data" method="post"   id="writeform" novalidate>
+        <div class="card shadow p-4 border-left-primary mb-3">
+          <div class="form-group">
+            <label for="qna_title">제목</label>
+            <div class="input-group">
+              <select class="custom-select col-md-2 col-3" name="qna_ask" id="qna_ask">
+                <option value="">선택하세요</option>
+                <option value="주문/결제">주문/결제</option>
+                <option value="취소/교환/반품">취소/교환/반품</option>
+                <option value="상품배송">상품배송</option>
+                <option value="기타">기타</option>
+              </select>
+              <input type="text" class="form-control" name="qna_title" id="qna_title">
+              <label id="ask_qna-error" class="bad" for="ask_qna" style="display:none"></label>
+              <label id="qna_title-error" class="bad" for="qna_title" style="display:none"></label>
+            </div>
           </div>
-        
-        <!-- 글쓰기 api -->
-        <textarea id="summernote" name="qna_content"></textarea>
-        <div class="float-right mt-3 mb-3">
-          <input type="submit" class="btn btn-primary mr-2" value="글쓰기">
-          <input type="button" class="btn btn-danger" value="목록" onclick="location.href='qnaList.do'">
-        </div>
+          <div class="form-group">
+            <label for="qna_content">내용</label>
+            <textarea id="qna_content" name="qna_content" class="form-control" rows="10"
+              style="resize:none"></textarea>
+          </div>
+          <div class="form-group custom-file mb-3">
+            <input type="file" class="custom-file-input" id="customFile" name="upload">
+            <label class="custom-file-label" for="customFile">첨부된 파일이 없습니다.</label>
+          </div>
+          <div class="form-group">
+            <div class="text-right">
+              <input type="submit" class="btn btn-primary" value="작성하기">
+              <input type="button" class="btn btn-info" value="목록" onclick="location.href='qnaList.do'">
+            </div>
+          </div>
       </form>
     </div>
+    </div>
 <!-- footer -->
-<c:import url="/WEB-INF/views/template/footer.jsp"/>
+    <c:import url="/WEB-INF/views/template/footer.jsp"/>
+    
 <!-- js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- 글쓰기 api -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="js/summernote-ko-KR.min.js"></script>
     <!-- 유효성검사 -->
     <script src="js/jquery.validate.min.js"></script>
     <!-- 게시판용 js -->
     <script src="js/board.js"></script>
-  </body>
+</body>
+</html>

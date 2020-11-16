@@ -14,6 +14,7 @@
     
 <bean class="com.board.dao.BoardDaoImpl"/>
 <bean class="com.board.controller.ListController"/><!-- 글목록 -->
+<bean class="com.board.controller.WriteController"/>
 
 <bean id="viewResolver"
 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,5 +22,12 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/"/>
 	<property name="suffix" value=".jsp"/>
 </bean>
+
+<!-- 업로드 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="52428800"/>
+	<property name="defaultEncoding" value="utf-8"/>
+</bean>
+
 
 </beans>

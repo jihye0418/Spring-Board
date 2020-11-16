@@ -51,7 +51,7 @@
      	<c:forEach var="article" items="${list}">
           <tr>
             <td>${article.qna_num}</td>
-			<td>${ask_qna}</td>
+			<td>${article.qna_ask }</td>
             <td class="text-left">
               <a href="qnaContent.do?qna_num=${article.qna_num}">${article.qna_title}</a>
               <c:if test="${article.qna_views>150}">
@@ -68,7 +68,7 @@
 
       <!-- 글쓰기 버튼 -->
       <div class="write_btn mt-2 mb-3 mr-3 clearfix">
-        <input type="button"  class="btn btn-primary" value="글쓰기" onclick="location.href='qnaWrite.do'">
+        <input type="button"  class="btn btn-primary float-right" value="글쓰기" onclick="location.href='qnawrite.do'">
       </div>
 
       <!-- 페이지 -->
