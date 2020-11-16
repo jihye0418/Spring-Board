@@ -72,21 +72,21 @@
 		select * from qna where qna_num=#{qna_num}
 	</select>
 	
-	<!-- 이전글
-	<select id="beforeList" resultType="BoardCommand" parameterType="map">
-		 select qna_title,qna_num from qna where qna_category=#{board.qna_category} and qna_num=(
-			select max(qna_num) from qna where qna_num<![CDATA[< ]]>#{qna_num ,jdbcType=VARCHAR}
+	<!-- 이전글-->
+	<select id="beforeList" resultType="BoardCommand" parameterType="HashMap">
+		 select qna_title,qna_num from qna 
+		 where qna_num=(
+			select max(qna_num) from qna where qna_category=#{qna_category} and qna_num<![CDATA[< ]]>#{qna_num}
 			) 
-			
-	</select>-->
+	</select>
 	
-	<!-- 다음글  
-	<select id="nextList" resultType="BoardCommand" parameterType="map">
-		select qna_title,qna_num,qna_category from qna 
-		where qna_category=#{qna_category} and qna_num=(
-			select min(qna_num) from qna where qna_num<![CDATA[> ]]>#{qna_num ,jdbcType=VARCHAR}
+	<!-- 다음글  -->
+	<select id="nextList" resultType="BoardCommand" parameterType="HashMap">
+		select qna_title,qna_num from qna 
+		where qna_num=(
+			select min(qna_num) from qna where qna_category=#{qna_category} and qna_num<![CDATA[> ]]>#{qna_num}
 			) 
-	</select>-->
+	</select>
 	
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="BoardCommand">

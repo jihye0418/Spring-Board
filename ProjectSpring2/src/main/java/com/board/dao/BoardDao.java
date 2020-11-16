@@ -1,9 +1,8 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Select;
 
 import com.board.domain.BoardCommand;
 
@@ -27,10 +26,10 @@ public interface BoardDao {
 	public BoardCommand selectBoard(int qna_num);
 	
 	//이전글
-	public List<BoardCommand> beforeList(Map<String,Integer> b);
+	public BoardCommand beforeList(Map<String, Object> b);
 	
 	//다음글
-	public List<BoardCommand> nextList(Map<String,Integer> n);
+	public BoardCommand nextList(Map<String, Object> b);
 	
 	//글 수정
 	public void updateBoard(BoardCommand board);

@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,15 +43,13 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDao {
 	}
 	
 	//이전글
-	public List<BoardCommand> beforeList(Map<String,Integer> b) {
-		List<BoardCommand> beforeList=getSqlSession().selectList("beforeList",b);
-		return beforeList;
+	public BoardCommand beforeList(Map<String, Object> b) {
+		return getSqlSession().selectOne("beforeList",b);
 	}
 	
 	//다음글
-	public List<BoardCommand> nextList(Map<String,Integer> n) {
-		List<BoardCommand> nextList=getSqlSession().selectList("nextList",n);
-		return nextList;
+	public BoardCommand nextList(Map<String, Object> b) {
+		return getSqlSession().selectOne("nextList",b);
 	}
 	
 	//글 수정

@@ -2,6 +2,7 @@ package com.board.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -29,7 +30,8 @@ public class DetailController {
 	@RequestMapping("/qnaDetail.do")
 	public ModelAndView process(@RequestParam("qna_num") int qna_num,
 			                                     @RequestParam(value="pageNum") int currentPage,
-			                                     @RequestParam("qna_category") int qna_category) {
+			                                     @RequestParam("qna_category") int qna_category,
+			                                     BoardCommand command) {
 		System.out.println("DetailController의 process()호출됨");
 		if(log.isDebugEnabled()) {
 			log.debug("qna_num=>"+qna_num);
@@ -47,26 +49,25 @@ public class DetailController {
 		board.setQna_content(StringUtil.parseBr(board.getQna_content()));
 		
 		//이전글
-		Map<String,Integer> h = new HashMap<String,Integer>();
-			h.put("qna_category", qna_category);//h.get("qna_category")
-			h.put("qna_num", qna_num);
-			System.out.println("이전글"+h);
+		Map<String,Object> b = new HashMap<String, Object>();
+		System.out.println("qna_category!!=>"+qna_category);
+			b.put("qna_category", qna_category);//h.get("qna_category")
+			b.put("qna_num", qna_num);
+			BoardCommand beforeList = boardDao.beforeList(b);
+
 
 		
 		//다음글
-		//BoardCommand nextContent=boardDao.nextList(qna_num);
-		Map<String,Integer> n = new HashMap<String,Integer>();
-			n.put("qna_category", qna_category);//h.get("qna_category")
-			n.put("qna_num", qna_num);
-			System.out.println("다음글"+n);
+			BoardCommand nextList = boardDao.nextList(b);
 	
 		ModelAndView mav = new ModelAndView("qnaView");
 
-		mav.addObject("h", h);
-		mav.addObject("n", n);
 		mav.addObject("pageNum", currentPage);
-
+		mav.addObject("qna_category", qna_category);
 		mav.addObject("board", board);
+		mav.addObject("beforeList", beforeList);
+		mav.addObject("nextList", nextList);
+
 		
 		System.out.println("오류확인하기"+mav.getModel());
 		return mav;

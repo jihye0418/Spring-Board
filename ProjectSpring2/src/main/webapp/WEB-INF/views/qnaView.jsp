@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>닥터쿡 공지사항</title>
+<title>닥터쿡</title>
 <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -66,22 +66,22 @@
         <tr class="thead-light border-top border-bottom">
           <th class="w-25">이전글</th>
           <c:choose>
-          	<c:when test="${empty b.qna_num}">
+          	<c:when test="${empty beforeList.qna_num}">
           		<td class="text-black-50">이전 글이 없습니다. </td>
           	</c:when>
           	<c:otherwise>
-          		<td><a href="qnaDetail.do?qna_num=${beforeContent.qna_num}&pageNum=${pageNum}&qna_category=${beforeContent.qna_category}">${beforeContent.qna_title}</a></td>
+          		<td><a href="qnaDetail.do?qna_num=${beforeList.qna_num}&pageNum=${pageNum}&qna_category=${qna_category}">${beforeList.qna_title}</a></td>
           	</c:otherwise>
           </c:choose>
         </tr>
         <tr class="thead-light border-bottom">
           <th class="w-25">다음글</th>
           <c:choose>
-          	<c:when test="${empty nextContent.qna_num}">
+          	<c:when test="${empty nextList.qna_num}">
           		<td class="text-black-50">다음 글이 없습니다. </td>
           	</c:when>
           	<c:otherwise>
-          		<td><a href="qnaDetail.do?qna_num=${nextContent.qna_num}&pageNum=${pageNum}&qna_category=${nextContent.qna_category}">${nextContent.qna_title}</a></td>
+          		<td><a href="qnaDetail.do?qna_num=${nextList.qna_num}&pageNum=${pageNum}&qna_category=${qna_category}">${nextList.qna_title}</a></td>
           	</c:otherwise>
           </c:choose>
         </tr>

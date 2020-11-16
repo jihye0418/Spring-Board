@@ -28,7 +28,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <form class="navbar-form form-inline mr-3">
-              <input id="searchBar" class="searchbar" type="text" placeholder="입력하세요">
+              <input id="searchBar" class="searchbar" type="text" placeholder=" 입력하세요">
               <button class="btn" type="submit"><i class="fa fa-search"></i></button>
             </form>
             <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-heart"></i>내 강의</a></li>
