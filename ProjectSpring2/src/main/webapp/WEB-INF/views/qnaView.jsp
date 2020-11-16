@@ -27,7 +27,11 @@
         <div class="p-3 board_content">
           ${board.qna_content }
         </div>
-        <div class="p-3 board_content mb-3">첨부파일:</div>
+        <table class="table table-borderless border-bottom">
+          <tr class="thead-light">
+            <th class="w-25">첨부파일</th><td><a href="file.do?filename=${board.qna_img}">${board.qna_img }</a></td>
+          </tr>
+        </table>
       </div>
       <div class="clearfix">
         <div class="float-right">
@@ -40,13 +44,13 @@
       <table class="table table-borderless mt-5">
         <tr class="thead-light border-top border-bottom">
           <th class="w-25">이전글</th>
-          <td><a href="qnaDetail.do?qna_num=${board.qna_num}&pageNum=${currentPage-1}">${article.beforeContent}</a></td>
+          <td>ddd</td>
           <!-- 이전글이 없는 경우 
           <td class="text-black-50">이전 글이 없습니다. </td>-->
         </tr>
         <tr class="thead-light border-bottom">
           <th class="w-25">다음글</th>
-          <td><a href="qnaDetail.do?qna_num=${board.qna_num}&pageNum=${currentPage +1}">${article.afterContent}</a></td>
+          <td>ddd</td>
           <!-- 다음글이 없는 경우 
           <td class="text-black-50">다음 글이 없습니다. </td>
           -->

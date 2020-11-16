@@ -33,4 +33,6 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 <!-- 파일 다운로드 -->
 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 
+<!-- 다운로드 뷰 -->
+<bean id="downloadView" class="com.board.view.DownloadView" />
 </beans>
