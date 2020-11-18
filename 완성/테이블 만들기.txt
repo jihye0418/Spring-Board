@@ -1,0 +1,46 @@
+<DB 만들기>
+
+create table member (
+mem_id varchar2(20) NOT NULL,
+mem_pass varchar2(20),
+mem_name varchar2(10),
+mem_born number(8),
+mem_phone varchar2(20),
+mem_email varchar2(30),
+mem_zipcode varchar2(20),
+mem_addr varchar2(100),
+mem_join date,
+mem_withdrawal date,
+mem_authority number(1)
+);
+
+CREATE TABLE qna (
+qna_num number(5) NOT NULL,
+mem_id varchar2(20) NOT NULL,
+qna_title varchar2(100),
+qna_content varchar2(2000),
+qna_date date,
+qna_views number(5),
+qna_category number(1),
+qna_authority number(1),
+qna_img varchar2(100)
+qna_ask varchar2(20)
+);
+
+ALTER TABLE qna ADD CONSTRAINT PK_QNA PRIMARY KEY (
+qna_num
+);
+
+ALTER TABLE qna ADD CONSTRAINT FK_member_TO_qna_1 FOREIGN KEY (
+mem_id
+)
+REFERENCES member (
+mem_id
+);
+
+create sequence seq_reply
+increment by 1
+start with 1
+minvalue 1
+maxvalue 9999999999
+nocycle;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="Board">  
+	<!-- 글 목록 -->
+	<select id="selectList" parameterType="map" resultType="BoardCommand">
+		select qna_num,mem_id,qna_title,qna_content,qna_views,qna_date,qna_img,qna_authority,qna_ask,qna_category
+		from (
+			select a.*,rownum rnum
+			from(
+				select * from qna
+				<where>
+					<if test="keyWord!=null and keyField=='qna_title'">
+						qna_title like '%' || #{keyWord} || '%'
+					</if>
+					<if test="keyWord!=null and keyField=='qna_content'">
+						qna_content like '%' || #{keyWord} || '%'
+					</if>
+					<if test="keyWord!=null and keyField=='mem_id'">
+						mem_id like '%' || #{keyWord} || '%'
+					</if>
+				</where>
+				order by qna_num desc
+			)a
+		)
+		<![CDATA[
+			where qna_category=#{qna_category} and (rnum >= #{start} and rnum <= #{end})
+		]]>
+	</select>
+	
+	<!-- 총 레코드 수 -->
+	<select id="selectCount" parameterType="map" resultType="Integer">
+		select count(*) from qna
+		<where>
+			<if test="keyWord!=null and keyField=='qna_title'">
+				qna_title like '%' || #{keyWord} || '%'
+			</if>
+			<if test="keyWord!=null and keyField=='qna_content'">
+				qna_content like '%' || #{keyWord} || '%'
+			</if>
+			<if test="keyWord!=null and keyField=='mem_id'">
+				mem_id like '%' || #{keyWord} || '%'
+			</if>
+			and qna_category=#{qna_category}
+		</where>
+	</select>
+	
+	<!-- 최대값 -->
+	<select id="getNewQna_num" resultType="int">
+		select max(qna_num) from qna 
+	</select>
+	
+	<!--검색  -->
+	<select id="getSearchCaterogry" resultType="int">
+		select * from qna
+	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="insertqnaBoard" parameterType="BoardCommand">
+		insert into qna values(#{qna_num},'테스트',#{qna_title},#{qna_content},sysdate,0,#{qna_category},#{qna_authority},#{qna_img,jdbcType=VARCHAR},#{qna_ask})
+	</insert>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateQnaViews" parameterType="int">
+		update qna set qna_views=qna_views+1 where qna_num=#{qna_num}
+	</update>
+	
+	<!-- 게시글 상세보기 -->
+	<select id="selectBoard" parameterType="int" resultType="BoardCommand">
+		select * from qna where qna_num=#{qna_num}
+	</select>
+	
+	<!-- 이전글-->
+	<select id="beforeList" resultType="BoardCommand" parameterType="HashMap">
+		 select qna_title,qna_num from qna 
+		 where qna_num=(
+			select max(qna_num) from qna where qna_category=#{qna_category} and qna_num<![CDATA[< ]]>#{qna_num}
+			) 
+	</select>
+	
+	<!-- 다음글  -->
+	<select id="nextList" resultType="BoardCommand" parameterType="HashMap">
+		select qna_title,qna_num from qna 
+		where qna_num=(
+			select min(qna_num) from qna where qna_category=#{qna_category} and qna_num<![CDATA[> ]]>#{qna_num}
+			) 
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="BoardCommand">
+		update qna set mem_id='테스트',qna_ask=#{qna_ask},qna_title=#{qna_title},qna_content=#{qna_content},qna_img=#{qna_img:VARCHAR}
+		where qna_num=#{qna_num}
+	</update>
+
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from qna where qna_num=#{qna_num}
+	</delete>
+</mapper>
